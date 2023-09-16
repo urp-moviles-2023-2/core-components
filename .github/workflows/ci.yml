@@ -49,5 +49,11 @@ jobs:
 
       # with the --auto flag set the EAS branch will be named after the GitHub branch
       # and the message for the update will match the commit's message.
+      # npm install --global expo-cli eas-cli
+      # npx expo whoiam
+      # npx expo login
+      # eas build -p android --profile preview --non-interactive
       - name: Publish update
         run: eas update --auto
+         
+         

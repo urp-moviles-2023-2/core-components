@@ -11,6 +11,7 @@ import React from "react";
 export default function App() {
   const [contact, setContact] = React.useState("");
   const [contacts, setContacts] = React.useState([]);
+  const name = ""
 
   function addContactHandler() {
     setContacts((currentContacts) => [
@@ -28,6 +29,7 @@ export default function App() {
           onChangeText={(text) => setContact(text)}
         />
         <Button title="Add Contact" onPress={addContactHandler} />
+        <Button title="Add Contact 1" />
       </View>
       <View style={styles.contactsContainer}>
         <FlatList
