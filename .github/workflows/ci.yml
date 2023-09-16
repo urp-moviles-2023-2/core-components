@@ -45,3 +45,9 @@ jobs:
           expo-version: latest
           eas-version: latest
           token: ${{ secrets.EXPO_TOKEN }}
+
+
+      # with the --auto flag set the EAS branch will be named after the GitHub branch
+      # and the message for the update will match the commit's message.
+      - name: Publish update
+        run: eas update --auto
