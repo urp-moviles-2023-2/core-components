@@ -5,6 +5,7 @@ import {
   View,
   Button,
   FlatList,
+  Pressable,
 } from "react-native";
 import React from "react";
 
@@ -12,12 +13,23 @@ export default function App() {
   const [contact, setContact] = React.useState("");
   const [contacts, setContacts] = React.useState([]);
 
-  function addContactHandler() {
+  const contactInputHandler = (enteredText) => {
+    setContact(enteredText);
+  };
+
+  const addContactHandler = () => {
     setContacts((currentContacts) => [
       ...currentContacts,
       { text: contact, id: Math.random().toString() },
     ]);
-  }
+  };
+
+  const deleteContactHandler = (id) => {
+    console.log("delete "+ id)
+    setContacts((currentContacts) => {
+      return currentContacts.filter((contact) => contact.id !== id);
+    });
+  };
 
   return (
     <View style={styles.appContainer}>
@@ -25,7 +37,7 @@ export default function App() {
         <TextInput
           style={styles.textInput}
           placeholder="Contact information"
-          onChangeText={(text) => setContact(text)}
+          onChangeText={contactInputHandler}
         />
         <Button title="Add Contact" onPress={addContactHandler} />
       </View>
@@ -34,9 +46,11 @@ export default function App() {
           data={contacts}
           renderItem={(itemData) => {
             return (
-              <View style={styles.contactItem}>
-                <Text style={styles.contactText}>{itemData.item.text}</Text>
-              </View>
+              <Pressable onPress={deleteContactHandler.bind(this, itemData.item.id)}>
+                <View style={styles.contactItem}>
+                  <Text style={styles.contactText}>{itemData.item.text}</Text>
+                </View>
+              </Pressable>
             );
           }}
           keyExtractor={(item, index) => {
