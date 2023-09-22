@@ -6,6 +6,7 @@ import {
   Button,
   FlatList,
   Pressable,
+  TouchableOpacity,
 } from "react-native";
 import React from "react";
 
@@ -18,10 +19,15 @@ export default function App() {
   };
 
   const addContactHandler = () => {
+    if (contact === "") {
+      alert("Please enter a contact");
+      return;
+    }
     setContacts((currentContacts) => [
       ...currentContacts,
       { text: contact, id: Math.random().toString() },
     ]);
+    setContact("");
   };
 
   const deleteContactHandler = (id) => {
@@ -37,9 +43,14 @@ export default function App() {
         <TextInput
           style={styles.textInput}
           placeholder="Contact information"
+          placeholderTextColor={"#cccccc"}
           onChangeText={contactInputHandler}
+          value={contact}
         />
-        <Button title="Add Contact" onPress={addContactHandler} />
+        
+        <TouchableOpacity style={styles.button} onPress={addContactHandler}>
+          <Text style={styles.buttonText}>Add Contact</Text>
+        </TouchableOpacity>
       </View>
       <View style={styles.contactsContainer}>
         <FlatList
@@ -48,7 +59,7 @@ export default function App() {
             return (
               <Pressable onPress={deleteContactHandler.bind(this, itemData.item.id)}>
                 <View style={styles.contactItem}>
-                  <Text style={styles.contactText}>{itemData.item.text}</Text>
+                  <Text style={styles.contactText}>{itemData.item.text[0].toUpperCase() + itemData.item.text.slice(1)}</Text>
                 </View>
               </Pressable>
             );
@@ -83,17 +94,35 @@ const styles = StyleSheet.create({
     width: "70%",
     marginRight: 10,
     padding: 10,
+    borderRadius: 5,
+    overflow: "hidden",
   },
   contactsContainer: {
     flex: 6,
+    backgroundColor: "#e3fae3",
   },
   contactItem: {
     margin: 8,
     padding: 8,
     borderRadius: 6,
-    backgroundColor: "#54c45e",
+    borderWidth: 1,
+    borderColor: "#cccccc",
+    backgroundColor: "white",
   },
   contactText: {
-    color: "white",
+    color: "black",
   },
+  button: {
+    marginTop: 10,
+    height: 40,
+    width: 120,
+    borderRadius: 5,
+    backgroundColor: "#54c45e",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 16,
+  }
 });
