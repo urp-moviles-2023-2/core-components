@@ -9,7 +9,7 @@ export default function App() {
   const addContactHandler = (contact) => {
     setContacts((currentContacts) => [
       ...currentContacts,
-      { text: contact, id: Math.random().toString() },
+      contact,
     ]);
   };
 
