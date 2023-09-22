@@ -4,35 +4,53 @@ import {
   View,
   TextInput,
   TouchableOpacity,
+  Modal,
 } from "react-native";
 import React from "react";
 
 const ContactInput = (props) => {
   const [contact, setContact] = React.useState("");
+  const [modalVisible, setModalVisible] = React.useState(false);
 
   const addContactHandler = () => {
     if (contact === "") {
       alert("Please enter a contact");
       return;
     }
-    props.addContactHandler(contact);
+    props.onAddContactHandler(contact);
     setContact("");
+    hideModal(false)
   };
 
-  return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        style={styles.textInput}
-        placeholder="Contact information"
-        placeholderTextColor={"#cccccc"}
-        onChangeText={(text) => setContact(text)}
-        value={contact}
-      />
+  const showModal = () => {
+    setModalVisible(true)
+  }
 
-      <TouchableOpacity style={styles.button} onPress={addContactHandler}>
+  const hideModal = () => {
+    setModalVisible(false)
+  }
+
+  return (
+    <>
+      <Modal visible={modalVisible} animationType="slide">
+        <View style={styles.inputContainer}>
+          <TextInput
+            style={styles.textInput}
+            placeholder="Contact information"
+            placeholderTextColor={"#cccccc"}
+            onChangeText={(text) => setContact(text)}
+            value={contact}
+          />
+
+          <TouchableOpacity style={styles.button} onPress={addContactHandler}>
+            <Text style={styles.buttonText}>Add</Text>
+          </TouchableOpacity>
+        </View>
+      </Modal>
+      <TouchableOpacity style={styles.button} onPress={showModal}>
         <Text style={styles.buttonText}>Add Contact</Text>
       </TouchableOpacity>
-    </View>
+    </>
   );
 };
 
@@ -43,6 +61,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     alignItems: "center",
+    marginTop: 80,
     marginBottom: 24,
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",

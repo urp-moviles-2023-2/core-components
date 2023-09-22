@@ -19,3 +19,9 @@ This second phase contains a modal to enter a new Contact
 
 This last phase contains a modal with multiple inputs to enter a new Contact
 ![alt text](img/phase3.png)
+
+
+### Participation
+
+* Renzo Carrasco
+* Diego Cedron

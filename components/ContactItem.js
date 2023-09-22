@@ -3,7 +3,7 @@ import React from "react";
 
 const ContactItem = (props) => {
   return (
-    <Pressable onPress={props.deleteContactHandler.bind(this, props.itemData.item.id)}>
+    <Pressable onPress={() => props.onDeleteContactHandler(props.itemData.item.id)}>
       <View style={styles.contactItem}>
         <Text style={styles.contactText}>
           {props.itemData.item.text[0].toUpperCase() + props.itemData.item.text.slice(1)}
