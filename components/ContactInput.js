@@ -10,25 +10,39 @@ import React from "react";
 
 const ContactInput = (props) => {
   const [contact, setContact] = React.useState("");
+  const [contactLastName, setContactLastName] = React.useState("");
+  const [mobilePhone, setMobilePhone] = React.useState("");
   const [modalVisible, setModalVisible] = React.useState(false);
 
   const addContactHandler = () => {
-    if (contact === "") {
+    if (contact === "" || contactLastName === "" || mobilePhone === "") {
       alert("Please enter a contact");
       return;
     }
-    props.onAddContactHandler(contact);
-    setContact("");
-    hideModal(false)
+    const data = {
+      id: Math.random().toString(),
+      text: contact,
+      contactLastName: contactLastName,
+      mobilePhone: mobilePhone,
+    }
+    props.onAddContactHandler(data);
+    blankContactFields();
+    hideModal(false);
   };
 
-  const showModal = () => {
-    setModalVisible(true)
+  const blankContactFields = () => {
+    setContact("");
+    setContactLastName("");
+    setMobilePhone("");
   }
 
+  const showModal = () => {
+    setModalVisible(true);
+  };
+
   const hideModal = () => {
-    setModalVisible(false)
-  }
+    setModalVisible(false);
+  };
 
   return (
     <>
@@ -36,10 +50,27 @@ const ContactInput = (props) => {
         <View style={styles.inputContainer}>
           <TextInput
             style={styles.textInput}
-            placeholder="Contact information"
+            placeholder="Contact Name"
             placeholderTextColor={"#cccccc"}
             onChangeText={(text) => setContact(text)}
             value={contact}
+          />
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Contact LastName"
+            placeholderTextColor={"#cccccc"}
+            onChangeText={(text) => setContactLastName(text)}
+            value={contactLastName}
+          />
+
+          <TextInput
+            style={styles.textInput}
+            placeholder="Mobile Phone"
+            placeholderTextColor={"#cccccc"}
+            onChangeText={(text) => setMobilePhone(text)}
+            value={mobilePhone}
+            keyboardType="number-pad"
           />
 
           <TouchableOpacity style={styles.button} onPress={addContactHandler}>
@@ -74,6 +105,7 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     overflow: "hidden",
+    marginBottom: 10
   },
   button: {
     marginTop: 10,
