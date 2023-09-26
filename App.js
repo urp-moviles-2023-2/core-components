@@ -1,4 +1,4 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, View, FlatList, StatusBar } from "react-native";
 import React from "react";
 import ContactInput from "./components/ContactInput";
 import ContactItem from "./components/ContactItem";
@@ -23,30 +23,20 @@ export default function App() {
   // TODO: Implement ContactList component defined in components folder
 
   return (
-    <View style={styles.appContainer}>
+    <View style={styles.contactsContainer}>
       <ContactInput onAddContactHandler={addContactHandler} />
       <View style={styles.contactsContainer}>
-        <FlatList
-          data={contacts}
-          renderItem={(itemData) => {
-            return (
-              <ContactItem
-                onDeleteContactHandler={deleteContactHandler}
-                itemData={itemData}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-          alwaysBounceVertical={false}
-        />
+      <ContactList
+        contacts={contacts} 
+        deleteContactHandler={deleteContactHandler} 
+      />
       </View>
-
+      
 
 
 
       <StatusBar style="auto" />
+      
 
     </View>
   );

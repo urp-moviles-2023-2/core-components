@@ -6,7 +6,7 @@ const ContactList = (props) => {
   return (
     <View style={styles.contactsContainer}>
       <FlatList
-        data={contacts}
+        data={props.contacts}
         renderItem={(itemData) => {
           return (
             <ContactItem
@@ -16,6 +16,7 @@ const ContactList = (props) => {
           );
         }}
         keyExtractor={(item, index) => {
+          console.log("a", item)
           return item.id;
         }}
         alwaysBounceVertical={false}

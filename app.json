@@ -18,22 +18,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      },
-      "package": "com.ronald.requena.corecomponents"
+      }
+     
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "extra": {
-      "eas": {
-        "projectId": "0f179177-64a7-4521-8909-645b0e916c9a"
-      }
-    },
+    
     "runtimeVersion": {
       "policy": "appVersion"
-    },
-    "updates": {
-      "url": "https://u.expo.dev/0f179177-64a7-4521-8909-645b0e916c9a"
     }
+    
   }
 }
