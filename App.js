@@ -1,45 +1,30 @@
-import { StyleSheet, View, FlatList } from "react-native";
+import { StyleSheet, Text, TextInput, View, Button } from "react-native";
 import React from "react";
-import ContactInput from "./components/ContactInput";
-import ContactItem from "./components/ContactItem";
 
 export default function App() {
-  const [contacts, setContacts] = React.useState([]);
+  const [contact, setContact] = React.useState("");
 
-  const addContactHandler = (contact) => {
-    setContacts((currentContacts) => [
-      ...currentContacts,
-      contact,
-    ]);
+  //TODO: Tip 1 for the assignment 2
+  //const [contacts, setContacts] = React.useState([]);
+
+  const addContactHandler = () => {
+    console.log(contact);
+
+    //TODO: Tip 2 for the assignment 2
+    //setContacts([...contacts, { name: contact }]);
   };
-
-  const deleteContactHandler = (id) => {
-    setContacts((currentContacts) => {
-      return currentContacts.filter((contact) => contact.id !== id);
-    });
-  };
-
-  // TODO: Implement ContactList component defined in components folder
-
   return (
     <View style={styles.appContainer}>
-      <ContactInput onAddContactHandler={addContactHandler} />
-      <View style={styles.contactsContainer}>
-        <FlatList
-          data={contacts}
-          renderItem={(itemData) => {
-            return (
-              <ContactItem
-                onDeleteContactHandler={deleteContactHandler}
-                itemData={itemData}
-              />
-            );
-          }}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }}
-          alwaysBounceVertical={false}
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Contact information"
+          onChangeText={(text) => setContact(text)}
         />
+        <Button title="Add Contact" onPress={addContactHandler} />
+      </View>
+      <View style={styles.contactsContainer}>
+        <Text>List of Contacts...</Text>
       </View>
     </View>
   );
@@ -51,8 +36,22 @@ const styles = StyleSheet.create({
     padding: 80,
     paddingHorizontal: 16,
   },
+  inputContainer: {
+    flex: 1,
+    flexDirection: "column",
+    alignItems: "center",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: "#cccccc",
+    width: "70%",
+    marginRight: 10,
+    padding: 10,
+  },
   contactsContainer: {
     flex: 6,
-    backgroundColor: "#e3fae3",
   },
 });
