@@ -1,7 +1,7 @@
-import { StyleSheet, Text, View, Pressable } from "react-native";
-import React from "react";
+import {StyleSheet, Text, View, Pressable} from 'react-native';
+import React from 'react';
 
-const ContactItem = (props) => {
+const ContactItem = props => {
   return (
     <Pressable
       onPress={() => props.onDeleteContactHandler(props.itemData.item.id)}
@@ -10,7 +10,7 @@ const ContactItem = (props) => {
         <Text style={styles.contactText}>
           {props.itemData.item.text[0].toUpperCase() +
             props.itemData.item.text.slice(1) +
-            " " +
+            ' ' +
             props.itemData.item.contactLastName[0].toUpperCase() +
             props.itemData.item.contactLastName.slice(1)}
         </Text>
@@ -30,18 +30,18 @@ const styles = StyleSheet.create({
     padding: 8,
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: "#cccccc",
-    backgroundColor: "white",
-    flexDirection: "row",
-    flex: 2
+    borderColor: '#cccccc',
+    backgroundColor: 'white',
+    flexDirection: 'row',
+    flex: 2,
   },
   contactText: {
     flex: 1,
-    color: "black",
+    color: 'black',
   },
   contactPhone: {
     flex: 1,
-    color: "black",
-    backgroundColor: "green",
+    color: 'black',
+    backgroundColor: 'green',
   },
 });

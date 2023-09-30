@@ -1,21 +1,18 @@
-import { StyleSheet, View, FlatList } from "react-native";
-import React from "react";
-import ContactInput from "./components/ContactInput";
-import ContactItem from "./components/ContactItem";
+import {StyleSheet, View, FlatList} from 'react-native';
+import React from 'react';
+import ContactInput from './components/ContactInput';
+import ContactItem from './components/ContactItem';
 
 export default function App() {
   const [contacts, setContacts] = React.useState([]);
 
-  const addContactHandler = (contact) => {
-    setContacts((currentContacts) => [
-      ...currentContacts,
-      contact,
-    ]);
+  const addContactHandler = contact => {
+    setContacts(currentContacts => [...currentContacts, contact]);
   };
 
-  const deleteContactHandler = (id) => {
-    setContacts((currentContacts) => {
-      return currentContacts.filter((contact) => contact.id !== id);
+  const deleteContactHandler = id => {
+    setContacts(currentContacts => {
+      return currentContacts.filter(contact => contact.id !== id);
     });
   };
 
@@ -27,7 +24,7 @@ export default function App() {
       <View style={styles.contactsContainer}>
         <FlatList
           data={contacts}
-          renderItem={(itemData) => {
+          renderItem={itemData => {
             return (
               <ContactItem
                 onDeleteContactHandler={deleteContactHandler}
@@ -53,6 +50,6 @@ const styles = StyleSheet.create({
   },
   contactsContainer: {
     flex: 6,
-    backgroundColor: "#e3fae3",
+    backgroundColor: '#e3fae3',
   },
 });
