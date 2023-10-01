@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, FlatList} from 'react-native';
+import {StyleSheet, View, FlatList} from 'react-native';
 import React from 'react';
 import ContactItem from './ContactItem';
 
