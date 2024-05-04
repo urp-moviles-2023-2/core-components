@@ -39,8 +39,8 @@ jobs:
         run: eas update --auto --non-interactive
 
       # Acción build de Android
-      - name: 🚀 Crea nueva version en Expo
-        run: eas build -p android --profile preview --non-interactive
+      #- name: 🚀 Crea nueva version en Expo
+      #  run: eas build -p android --profile preview --non-interactive
 
       # To publish artifact locally
       # npm install --global expo-cli eas-cli
