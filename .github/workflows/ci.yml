@@ -80,6 +80,7 @@ jobs:
       # npx expo whoiam
       # npx expo login
       # eas build -p android --profile preview --non-interactive
+      
       - name: Update Expo
         run: eas update --auto
          
