@@ -2,7 +2,7 @@ name: Proceso de Integración Continua
 
 on:
   push:
-    branches: [rrequena-paso-06]
+    branches: [main]
 
 jobs:
   build:
